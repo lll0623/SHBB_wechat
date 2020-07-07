@@ -1,0 +1,18 @@
+<view class="p040">
+    <view class="clearfix shopItem rel" wx:for="{{shopLists}}" wx:for-index="index" wx:key="key" data-id="{{item.UnitId}}" data-state="{{item.CheckStatus}}" bindtap="goShopDetail">
+        <image src="{{item.ImageUrl}}" class="fl mr30"/>
+        <view class="fl shopInfo">
+            <view class="fs28 C0 mb10 bold">{{item.ProjectName}}</view>
+            <view class="fs22 C9 mb5">
+                <view class="inlineB mr10 rel" style="top:-3rpx;">{{item.Province}}{{item.Area}}{{item.Road}}{{item.HourseNumber}}</view>
+            </view>
+            <view class="fs22 C9 mb5">
+                <view class="inlineB mr10">{{item.ConstructionArea}}m²</view>
+            </view>
+            <view class="fs22 red mb5">{{item.MonthRent}}元/月</view>
+        </view>
+        <view class="red fs24 abs shopPrice bold tag {{item.CheckStatus == 0 ? 'tagGray' : item.CheckStatus == 1 ? 'tagG' : item.CheckStatus == 2 ? 'tagRed':''}}">
+            {{item.CheckStatus == 0 ? '未审核' : item.CheckStatus == 1 ? '审核通过' : item.CheckStatus == 2 ? '审核失败':''}}
+        </view>
+    </view>
+</view>

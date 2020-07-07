@@ -1,0 +1,50 @@
+
+.i-weChat{
+    width:50rpx;
+    height:50rpx;
+    background-size:330rpx auto;
+    background-position:4rpx -163rpx;
+    top:16rpx;
+}
+.i-close{
+    width:50rpx;
+    height:50rpx;
+    background-size:330rpx auto;
+    background-position:-52rpx -163rpx;
+    top:16rpx;
+}
+.tit{
+    width:240rpx;
+    margin:0 auto;
+    height:40rpx;
+    line-height:40rpx;
+    overflow: hidden;
+}
+.tit>.rel{
+    width:150rpx;
+    z-index:2;
+}
+.tit>.abs{
+    width:100%;
+    z-index:1;
+    height:1rpx;
+    background:#666;
+    top:50%;
+    left:0;
+}
+
+.telLogin{
+    width:91%;
+}
+.loginIptItem button{
+    height:90rpx;
+    line-height:90rpx;
+}
+.loginIptItem button,.loginIptItem button:after,.loginIptItem button[disabled]{
+    background: none;
+    border:none;
+}
+.loginIptItem input{
+    height:90rpx;
+    line-height: 90rpx;
+}

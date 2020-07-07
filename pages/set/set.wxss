@@ -1,0 +1,7 @@
+.releaseBox .item .cont{
+    margin-top: 0;
+    height:100%;
+    line-height: 90rpx;
+    overflow: hidden;
+    width:430rpx;
+}

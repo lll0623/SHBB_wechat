@@ -1,0 +1,9 @@
+page {
+    background-color: #f4f4f4;
+}
+.recordItem{
+    border-radius: 15rpx;
+}
+.recordItem:last-child{
+    margin-bottom: 0;
+}

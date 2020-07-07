@@ -1,0 +1,61 @@
+<view class="p040">
+    <view class="clearfix shopSec fs24 C9 mt10 pb40">
+        <view class="fl clearfix" style="width:100%;">
+            <view class="fl mr10">需求区域:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.DemandRegion}}">{{mineNeed.DemandRegion}}</view>
+        </view>
+        <view class="fl clearfix" style="width:100%;">
+            <view class="fl mr10">商铺类型:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.ShopType}}">{{mineNeed.ShopType}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">品牌:</view>
+            <view class="C0 fl ellips green" wx:if="{{mineNeed.Brand && mineNeed.BrandType}}">{{mineNeed.Brand}}-{{mineNeed.BrandType}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">业态:</view>
+            <view class="C0 fl ellips yellow" wx:if="{{mineNeed.FormatCategory && mineNeed.Format}}">{{mineNeed.FormatCategory}}-{{mineNeed.Format}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">面积:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.AreaMin && mineNeed.AreaMax}}">{{mineNeed.AreaMin}} - {{mineNeed.AreaMax}}m²</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">日租金:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.PriceMin && mineNeed.PriceMax}}">{{mineNeed.PriceMin}}-{{mineNeed.PriceMax}}元/月/m²</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">月租金:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.MonthRent}}">{{mineNeed.MonthRent}}万元</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">转让合作:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.TransferCooperation}}">{{mineNeed.TransferCooperation}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">紧急程度:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.UrgentType}}">{{mineNeed.UrgentType}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">计划开店:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.PlanShop}}">{{mineNeed.PlanShop}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">人均消费:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.PerConsume}}">{{mineNeed.PerConsume}}元</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">品牌定位:</view>
+            <view class="C0 fl ellips" wx:if="{{mineNeed.BrandType}}">{{mineNeed.BrandType}}</view>
+        </view>
+    </view>
+    <!-- <view wx:if="{{shopDetail.SpecialTag.length}}"> -->
+        <!-- <view class="bold fs36 C0 mt40">特殊标签</view>
+        <view class="clearfix pb40 mt30 comBottom">
+            <view class="fl fs24 mr10 tag {{index%2==0?'tagG' : 'tagC'}}" wx:for="{{shopDetail.SpecialTags}}" wx:for-index="index" wx:key="key">{{item}}</view>
+        </view> -->
+    <!-- </view> -->
+    <!-- <view class="bold fs36 C0 mt40">描述</view>
+    <view class="pb40 mt30 fs28 C3">{{shopDetail.Descriptions}}</view> -->
+</view>
+<!-- <view class="Cf fs30 mt30 bold tc bgY comBtn comWidth fix" style="bottom:100rpx;left:7%;" bindtap="goMineNeedEdit">编辑修改</view> -->

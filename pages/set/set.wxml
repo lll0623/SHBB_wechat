@@ -1,0 +1,14 @@
+<view class="releaseBox fs28 C0" style="">
+    <view class="comBottom clearfix item">
+        <view class="label fl">昵称</view>
+        <view class="fl cont">蒋金金</view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">手机号码</view>
+        <view class="fl cont">13444444444</view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">微信号</view>
+        <view class="fl cont">哈哈哈哈 </view>
+    </view>
+</view>

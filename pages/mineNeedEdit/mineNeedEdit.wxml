@@ -1,0 +1,104 @@
+<view class="releaseBox fs28 C0">
+    <view class="comBottom clearfix item">
+        <view class="label fl">需求类型<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">商铺类型<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">品牌<text class="red">*</text></view>
+        <input class="fl cont" type="text" placeholder="请输入品牌" bindinput="iptBrand" style="width:430rpx;" />
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">经营类型<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">业态<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view style="height:90rpx;">
+                {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+            </view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">需求面积<text class="red">*</text></view>
+        <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptAreaMin"/>
+        <view class='fl mr20'>-</view>
+        <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptAreaMax"/>
+        <view class="fr">m²</view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">日租金<text class="red">*</text></view>
+        <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptDayRentMin"/>
+        <view class='fl mr20'>-</view>
+        <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptDayRentMax"/>
+        <view class="fr">元</view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">月租金<text class="red">*</text></view>
+        <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptMonthRentMin"/>
+        <view class='fl mr20'>-</view>
+        <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptMonthRentMax"/>
+        <view class="fr">元</view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">转让合作<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">紧急程度<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">计划开店<text class="red">*</text></view>
+        <input class="fl cont" type="number" placeholder="请输入品牌" bindinput="iptBrand" style="width:430rpx;" />
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">人均消费<text class="red">*</text></view>
+        <input class="fl cont" type="number" placeholder="请输入品牌" bindinput="iptBrand" style="width:430rpx;" />
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">品牌定位<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="comBottom clearfix item">
+        <view class="label fl">特殊标签<text class="red">*</text></view>
+        <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="height:90rpx;">{{array[index]}}</view>
+        </picker>
+        <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+    </view>
+    <view class="clearfix item mb20" style="height:auto;">
+        <view class="label mt20" style="width:auto;height:60rpx;line-height:60rpx;">品牌login</view>
+        <view class="clearfix imgWrap" style="padding-top:20rpx;">
+            <view class="rel fl imgItem" wx:for="{{Images}}" wx:for-index="index" wx:key="key">
+                <image src="{{item}}"  bindtap="handleImagePreview" data-idx="{{index}}" />
+                <view class="icon i-delete abs" bindtap="deleteImg" data-index="{{index}}"></view>
+            </view>
+            <view class="addImg tc fl" bindtap="addImg" wx:if="{{Images.length < 1}}"><view class="icon i-addImg inlineB"></view></view>
+        </view>
+    </view>
+</view>
+<view class="Cf fs30 mt80 bold tc bgY comBtn comWidth mb30" bindtap="editUserDemand">确认发布</view>

@@ -1,0 +1,112 @@
+<view class="rentHeader comBottom rel">
+    <view class="icon i-collect fr abs {{isCollect ? 'i-collected' : '' }}" bindtap="collectFunc" data-id="{{rentDetail.CustId}}"></view>
+    <image src="{{rentDetail.Image}}" class="block" />
+    <view class="tc fs30 C0 mb30">{{rentDetail.CustName}}</view>
+    <view class="fs26 C9 tr mb30">客源编号：{{rentDetail.CustCode}}</view>
+</view>
+<view class="p040">
+    <view class="clearfix shopSec fs24 C9 mt10 pb40">
+        <view class="clearfix fl overflow" style="width:100%;">
+            <view class="fl mr10">需求区域:</view>
+            <view class="clearfix fl" style="width:517rpx;" wx:if="{{rentDetail.ReqAreas&&rentDetail.ReqAreas.length}}">
+                <view class="fs22 tag tagG fl mr10" wx:for="{{rentDetail.ReqAreas}}" wx:for-index="index" wx:key="key">{{item}}</view>
+            </view>
+        </view>
+        <view class="clearfix fl overflow" style="width:100%;">
+            <view class="fl mr10">商铺类型:</view>
+            <view class="clearfix fl" style="width:517rpx;" wx:if="{{rentDetail.BuildTypes&&rentDetail.BuildTypes.length}}">
+                <view class="fs22 tag tagY fl mr10" wx:for="{{rentDetail.BuildTypes}}" wx:for-index="index" wx:key="key">{{item}}</view>
+            </view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">品牌:</view>
+            <view class="C0 fl ellips green" wx:if="{{rentDetail.Brand&&rentDetail.BrandType}}">{{rentDetail.Brand}}-{{rentDetail.BrandType}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">业态:</view>
+            <view class="C0 fl ellips yellow" wx:if="{{rentDetail.FormatCategory&&rentDetail.Format}}">{{rentDetail.FormatCategory}}-{{rentDetail.Format}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">面积:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.AreaMin&&rentDetail.AreaMax}}">{{rentDetail.AreaMin}}-{{rentDetail.AreaMax}}m²</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">日租金:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.PriceMin&&rentDetail.PriceMin}}">{{rentDetail.PriceMin}}-{{rentDetail.PriceMin}}元/m²</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">月租金:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.MonthRentMin&&rentDetail.MonthRentMin}}">{{rentDetail.MonthRentMin}}-{{rentDetail.MonthRentMin}}万元</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">转让合作:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.Transfer}}">{{rentDetail.Transfer}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">紧急程度:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.Urgency}}">{{rentDetail.Urgency}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">计划开店:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.PlanOpenShopCount}}">{{rentDetail.PlanOpenShopCount}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">人均消费:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.AvgPeopleFee}}">{{rentDetail.AvgPeopleFee}}元</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">品牌定位:</view>
+            <view class="C0 fl ellips" wx:if="{{rentDetail.Position}}">{{rentDetail.Position}}</view>
+        </view>
+    </view>
+
+</view>
+
+<view class="p040">
+    <view wx:if="{{rentDetail.SpecTags.length}}">
+        <view class="bold fs36 C0 mt40">特殊标签</view>
+        <view class="clearfix pb40 mt30 comBottom">
+            <view class="fl fs24 mr10 tag {{index%2==0?'tagG' : 'tagC'}}" wx:for="{{rentDetail.SpecTags}}" wx:for-index="index" wx:key="key">{{item}}</view>
+        </view>
+    </view>
+
+    <view class="bold fs36 C0 mt40">描述</view>
+    <view class="pb40 mt30 fs28 C3">{{rentDetail.Remark}}</view>
+    <!-- 预约 -->
+    <!-- <view class="bespeakWrap">
+        <view class="fs28 C3 tc rel">
+            <view class="rel">了解更多？蜜蜂找铺为您服务</view>
+            <view class="abs"></view>
+        </view>
+        <view class="Cf fs30 mt30 bold tc bgY comBtn comWidth" bindtap="bespeakFunc">邀TA看铺</view>
+    </view> -->
+    <view class="bold fs36 C0 mt40" wx:if="{{brokerLists&&brokerLists.length}}">推荐经纪人</view>
+    <view class="comBottom pb30 mt30" wx:if="{{brokerLists&&brokerLists.length}}">
+        <view class="brokerItem mb30" wx:for="{{brokerLists}}" wx:for-index="index" wx:key="key">
+            <image src="{{item.BrokerImg}}" class="fl mr30" />
+            <view class="fl">
+                <view class="fs28 C0 bold mb10 mt5">{{item.BrokerName}}</view>
+                <view class="fs24 C6">{{item.BrokerCompany}}</view>
+            </view>
+            <view class="fr brokerIcon mt10" data-tel="{{item.BrokerTel}}" bindtap="telFunc">
+                <view class="icon i-tel"></view>
+            </view>
+            <view class="fr brokerIcon mt10 mr30">
+                <view class="icon i-eva"></view>
+            </view>
+        </view>
+        <view class="tc fs24 C0">您联系经纪人时，请告知是在蜜蜂找铺平台上看到的，方便您和业务员更好的沟通，服务更有保障！</view>
+    </view>
+    <view class="bold fs36 C0 mt40" wx:if="{{similarCustLists&&similarCustLists.length}}">智能推荐</view>
+</view>
+<scroll-view scroll-x="true" scroll-with-animation="true" class="clearfix mt30 pb30 recommendLists" style="height:390rpx;" wx:if="{{similarCustLists&&similarCustLists.length}}">
+    <view class="recommendItem mr20 inlineB" wx:for="{{similarCustLists}}" wx:for-index="index" wx:key="key" data-id="{{item.ShopId}}">
+        <image class="" src="{{item.ShopImg}}" />
+        <view class="p20">
+            <view class="fs28 C0 bold">{{item.ShopName}}</view>
+            <view class="fs24 C6 mt5">建筑面积:<text class="C3">{{item.ShopBuiltUpArea}}</text></view>
+            <view class="fs24 C6 mt5">日租金:<text class="C3">{{item.ShopDayRent}}</text></view>
+            <view class="fs24 C6 mt5">月租金:<text class="fs30 red">{{item.ShopMonthRent}}</text></view>
+        </view>
+    </view>
+</scroll-view>

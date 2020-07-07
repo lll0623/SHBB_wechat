@@ -1,0 +1,128 @@
+<scroll-view bindscroll="scroll" scroll-y="true" scroll-with-animation="true" style='height:{{windowHeight}}px;' bindscrolltolower="onReachBottomFunc">
+    <view class="fix sortIcon tc" bindtap="sortFunc" data-type="5">
+        <view class="icon i-sort inlineB"></view>
+        <view class="fs22 Cf rel">排序</view>
+    </view>
+    <view class="p040">
+        <view class="fs28 C3 clearfix bgF4 listsSearch mb20" bindtap="goSearchFunc">
+            <view class="icon i-search fl rel"></view>
+            <input class="fl" type="text" placeholder-class="C6" placeholder="请输入项目名称" disabled="disabled" value="{{searchKey}}"/>
+        </view>
+    </view>
+    <view class="comBottom bgF {{scrollTop>15 || (isActive !=5 && isActive!='') ? 'isFix' : ''}}">
+        <view class="sortWrap clearifx fs28 C0 tc mb10">
+            <view class="fl sortItem {{isActive == 1 || region!='区域' ? 'active' : ''}}" bindtap="sortFunc" data-type="1"><view class="inlineB ellips">{{region}}</view><view class="icon i-arrow inlineB rel"></view></view>
+            <view class="fl sortItem {{isActive == 2 || area!='面积' ? 'active' : ''}}" bindtap="sortFunc" data-type="2"><view class="inlineB ellips">{{area}}</view><view class="icon i-arrow inlineB rel"></view></view>
+            <view class="fl sortItem {{isActive == 3 || operationText !='业态' ? 'active' : ''}}" bindtap="sortFunc" data-type="3"><view class="inlineB ellips">{{operationText}}</view><view class="icon i-arrow inlineB rel"></view></view>
+            <view class="fl sortItem {{isActive == 4 || more == '更多' ? 'active' : ''}}" bindtap="sortFunc" data-type="4"><view class="inlineB ellips">更多</view><view class="icon i-arrow inlineB rel"></view></view>
+        </view>
+    </view>
+    <view class="fix screenWrap {{isActive == 5? 'isSort' : ''}}" wx:if="{{isActive != ''}}">
+        <!-- 区域筛选 -->
+        <view class="abs screenItem bgF clearfix" wx:if="{{isActive == 1}}" style="max-height:600rpx;overflow:hidden;">
+            <scroll-view class="fl regionHeight" style="width:{{regionWid[0]}};">
+                <view class="fs32 tc C0 regionItem {{isActive1 == item.AreaCode ?'active':''}}" wx:for="{{firRegion}}" wx:for-index="index" wx:key="key" data-areaCode="{{item.AreaCode}}" bindtap="firRegionFunc">
+                    {{item.AreaName}}
+                </view>
+            </scroll-view>
+            <scroll-view scroll-y="true" wx:if="{{secRegion.length}}" class="fl regionHeight" style="width:{{regionWid[1]}};">
+                <view class="fs32 tc C0 regionItem {{isActive2 == item.AreaCode ?'active':''}}" wx:for="{{secRegion}}" wx:for-index="index" wx:key="key" data-areaName="{{item.AreaName}}" data-areaCode="{{item.AreaCode}}" bindtap="secRegionFunc">
+                    {{item.AreaName}}
+                </view>
+            </scroll-view>
+            <scroll-view scroll-y="true" wx:if="{{thiRegion.length}}" class="fl regionHeight" style="width:{{regionWid[2]}};">
+                <view class="fs32 tc C0 regionItem {{isActive3 == item.AreaCode ?'active':''}}" wx:for="{{thiRegion}}" wx:for-index="index" wx:key="key" data-areaName="{{item.AreaName}}" data-areaCode="{{item.AreaCode}}" bindtap="thiRegionFunc">
+                    {{item.AreaName}}
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 面积筛选 -->
+        <view class="abs screenItem bgF fs24 C0"  wx:if="{{isActive == 2}}">
+            <view class="p30 comBottom" style="padding-bottom:0;">
+                <view class="fs30 C0 mb30">面积区间（m²）</view>
+                <view class="clearfix mb30 iptItem">
+                    <input class="fl block tc mr20" type="number" placeholder="最小面积" bindinput="iptMinArea" bindfocus="focusArea" value="{{minArea}}"/>
+                    <view class="fl Ce mr20">-</view>
+                    <input class="fl block tc" type="number" placeholder="最大面积" bindinput="iptMaxArea" bindfocus="focusArea" value="{{maxArea}}"/>
+                </view>
+                <view class="clearfix itemlists">
+                    <view class="fl bgF4 mb20 mr20 tc {{areaActive == item.ItemId ? 'active':''}}" data-id="{{item.ItemId}}" data-ItemName="{{item.ItemName}}" data-Property1="{{item.Property1}}"  data-Property2="{{item.Property2}}" wx:for="{{areaLists}}" wx:for-index="index" wx:key="key" bindtap="itemAreaFunc">{{item.ItemName}}</view>
+                </view>
+            </view>
+            <view class="clearfix screenBtnWrap tc fs30" style="padding:25rpx 30rpx;">
+                <view class="bgF4 C6 mr30 fl" bindtap="clearAreaFunc">不限条件</view>
+                <view class="bgY Cf fl" bindtap="screenAreaFunc">确定</view>
+            </view>
+        </view>
+        <!--  业态筛选 -->
+        <view class="abs screenItem bgF" wx:if="{{isActive == 3}}" style="max-height:600rpx;overflow:hidden;">
+            <scroll-view scroll-y="true" class="fl regionHeight" style="width:{{YTWid[0]}};">
+                <view class="fs32 tc C0 regionItem {{isYTActive1 == item.ItemId ?'active':''}}" wx:for="{{firYT}}" wx:for-index="index" data-child="{{item.Children}}" wx:key="key" data-ItemId="{{item.ItemId}}" bindtap="firYTFunc">
+                    {{item.ItemName}}
+                </view>
+            </scroll-view>
+            <scroll-view scroll-y="true" wx:if="{{secRegion.length}}" class="fl regionHeight" style="width:{{YTWid[1]}};">
+                <view class="fs32 tc C0 regionItem {{isYTActive2 == item.ItemId ?'active':''}}" wx:for="{{secYT}}" wx:for-index="index" wx:key="key" data-ItemId="{{item.ItemId}}" data-itemvalue="{{item.ItemValue}}" data-ItemName="{{item.ItemName}}" bindtap="secYTFunc">
+                    {{item.ItemName}}
+                </view>
+            </scroll-view>
+        </view>
+        <!-- 更多 -->
+        <view class="abs screenItem bgF fs24 C0" wx:if="{{isActive == 4}}">
+            <view class="p30 comBottom" style="padding-bottom:0;">
+                <view class="fs30 C0 mb30">项目状态</view>
+                <view class="clearfix itemlists">
+                    <view class="fl bgF4 mb20 mr20 tc {{proSActive == item.ItemId ? 'active':''}}" data-id="{{item.ItemId}}" data-itemvalue="{{item.ItemValue}}" data-ItemName="{{item.ItemName}}"  wx:for="{{proSLists}}" wx:for-index="index" wx:key="key" bindtap="itemProSFunc">{{item.ItemName}}</view>
+                </view>
+            </view>
+            <view class="p30 comBottom" style="padding-bottom:0;">
+                <view class="fs30 C0 mb30">项目类型</view>
+                <view class="clearfix itemlists">
+                    <view class="fl bgF4 mb20 mr20 tc {{proTActive == item.ItemId ? 'active':''}}" data-id="{{item.ItemId}}" data-itemvalue="{{item.ItemValue}}" data-ItemName="{{item.ItemName}}"  wx:for="{{proTLists}}" wx:for-index="index" wx:key="key" bindtap="itemProTFunc">{{item.ItemName}}</view>
+                </view>
+            </view>
+            <view class="p30 comBottom" style="padding-bottom:0;">
+                <view class="fs30 C0 mb30">建筑类型</view>
+                <view class="clearfix itemlists">
+                    <view class="fl bgF4 mb20 mr20 tc {{buildTActive == item.ItemId ? 'active':''}}" data-id="{{item.ItemId}}" data-itemvalue="{{item.ItemValue}}" data-ItemName="{{item.ItemName}}"  wx:for="{{buildTLists}}" wx:for-index="index" wx:key="key" bindtap="itemBuildTFunc">{{item.ItemName}}</view>
+                </view>
+            </view>
+            <view class="clearfix screenBtnWrap tc fs30 abs bgF" style="padding:25rpx 30rpx;">
+                <view class="bgF4 C6 mr30 fl" bindtap="clearMoreFunc">不限条件</view>
+                <view class="bgY Cf fl" bindtap="screenMoreFunc">确定</view>
+            </view>
+        </view>
+        <view class="abs screenCover" bindtap="cancelSort"></view>
+        <view class="abs tc screenSort bgF fs30 C3" wx:if="{{isActive == 5}}">
+            <view data-type="1" data-Field="ModifyTime" data-IsASC="true" class="{{isScreenSort==1?'active':''}}" bindtap="screenSortFunc">默认排序</view>
+            <view data-type="2" data-Field="ModifyTime" data-IsASC="false" class="{{isScreenSort==2?'active':''}}" bindtap="screenSortFunc">最新发布</view>
+            <!-- <view data-type="3" data-Field="MonthRentMax" data-IsASC="false" class="{{isScreenSort==3?'active':''}}" bindtap="screenSortFunc">月租金从高到低</view>
+            <view data-type="4" data-Field="MonthRentMin" data-IsASC="true" class="{{isScreenSort==4?'active':''}}" bindtap="screenSortFunc">月租金从低到高</view> -->
+            <view data-type="5" data-Field="DailyRentMin" data-IsASC="true" class="{{isScreenSort==5?'active':''}}" bindtap="screenSortFunc">日租金从高到低</view>
+            <view data-type="6" data-Field="DailyRentMin" data-IsASC="false" class="{{isScreenSort==6?'active':''}}" bindtap="screenSortFunc">日租金从低到高</view>
+            <view data-type="7" data-Field="ConstrucArea" data-IsASC="false" class="{{isScreenSort==7?'active':''}}" bindtap="screenSortFunc">面积从高到低</view>
+            <view data-type="8" data-Field="ConstrucArea" data-IsASC="true" class="{{isScreenSort==8?'active':''}}" bindtap="screenSortFunc">面积从低到高</view>
+        </view>
+    </view>
+    <view class="p040">
+        <view class="clearfix shopItem rel" wx:for="{{proLists}}" wx:for-index="index" wx:key="key" data-id="{{item.Id}}" bindtap="goProDetail">
+            <view class="rel fl mr30">
+                <view class="abs tagS fs22 {{item.ProjectStatus == 1? 'tagSR' : item.ProjectStatus == 2 ? 'tagSG' : item.ProjectStatus == 3 ? 'tgSB' : item.ProjectStatus == 4 ? 'tgSGray' : ''}}" style="top:0;left:0;">{{item.ProjectStatus == 1? '自持' : item.ProjectStatus == 2 ? '代理招商' : item.ProjectStatus == 3 ? '合作' : item.ProjectStatus == 4 ? '未合作' : ''}}</view>
+                <image src="{{item.ImageUrl}}"/>
+            </view>
+            <view class="fl shopInfo">
+                <view class="fs28 C0 mb5 bold">{{item.Name}}<view class="fs22 tag  inlineB rel ml10 {{item.ProjectType == 1 ? 'tagG' : item.ProjectType == 2 ? 'tagGray' : item.ProjectType == 3 ? 'tagY': ''}}" style="top:10rpx;">{{item.ProjectType == 1 ? '招商中' : item.ProjectType == 2 ? '准备中' : item.ProjectType == 3 ? '未招商': ''}}</view></view>
+                <view class="fs22 C9 mb5">
+                    <view class="inlineB mr10 rel">{{item.Address || ''}}</view>
+                </view>
+                <view class="fs22 C9 mb5">
+                    <view class="inlineB mr10">{{item.ConstructArea || 0}}m²</view>
+                </view>
+                <view class="clearfix fs22 mb5">
+                    <view class="fl tag mr10 {{index%2==0?'tagG' : 'tagC'}} mt10" wx:for="{{item.Types}}" wx:for-index="index" wx:key="key">{{item}}</view>
+                </view>
+            </view>
+            <view class="red fs30 abs shopPrice bold">{{item.DailyRentMin || 0}}-{{item.DailyRentMax || 0}}元/m²</view>
+        </view>
+    </view>
+</scroll-view>

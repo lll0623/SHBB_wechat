@@ -1,0 +1,47 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/mine/mine",
+        "pages/shopLists/shopLists",
+        "pages/shopDetail/shopDetail",
+        "pages/proLists/proLists",
+        "pages/proDetail/proDetail",
+        "pages/record/record",
+        "pages/rentLists/rentLists",
+        "pages/rentDetail/rentDetail",
+        "pages/release/release",
+        "pages/login/login",
+        "pages/mineCollected/mineCollected",
+        "pages/mineShop/mineShop",
+        "pages/mineNeed/mineNeed",
+        "pages/mineNeedEdit/mineNeedEdit",
+        "pages/set/set",
+        "pages/search/search"
+    ],
+    "window": {
+        "navigationBarTitleText": "蜜蜂找铺",
+        "navigationBarBackgroundColor":"#fff",
+        "backgroundColor": "#fff",
+        "navigationBarTextStyle":"black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "icon/index.png",
+                "selectedIconPath": "icon/indexAct.png"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "我的",
+                "iconPath": "icon/mine.png",
+                "selectedIconPath": "icon/mineAct.png"
+            }
+        ],
+        "color":"#666",
+        "selectedColor":"#f5c520",
+        "backgroundColor" : "#fff",
+        "borderStyle" : "white"
+    }
+}

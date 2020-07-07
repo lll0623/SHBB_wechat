@@ -1,0 +1,21 @@
+<view class="comWidth mt30">
+    <view class="recordItem bgF mb30" wx:for="{{recordLists}}" wx:for-index="index" wx:key="key">
+        <view class="fs28 C6 p20 comBottom">
+            <view class="fl mr20">最近带看时间:</view>
+            <view class="fl C0">{{item.LookDate}}</view>
+        </view>
+        <view class="p20 fs28">
+            <view class="clearfix" style="height:80rpx;line-height:80rpx;">
+                <view class="fl C6 mr20">带看人:</view>
+                <view class="fl C0 mr30">{{item.AgentName}}</view>
+                <view class="fl brokerIcon rel" wx:if="{{item.AgentPhone}}" style="top:0rpx;" data-tel="{{item.AgentPhone}}" bindtap="telFunc">
+                    <view class="icon i-tel"></view>
+                </view>
+            </view>
+            <view class="mt20 clearfix">
+                <view class="C6 fl mr20">带看次数:</view>
+                <view class="C0 fl"><text class="red">{{item.LookNum}}</text>次</view>
+            </view>
+        </view>
+    </view>
+</view>

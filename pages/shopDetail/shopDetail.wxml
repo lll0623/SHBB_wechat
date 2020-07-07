@@ -1,0 +1,169 @@
+<view wx:if="{{shopDetail.Banners.length}}">
+    <swiper class="banners" circular="true" indicator-dots="true"  interval="5000" duration="1000" indicator-active-color="#ffffff">
+        <block wx:for="{{shopDetail.Banners}}" wx:for-index="index" wx:key="key">
+            <swiper-item>
+                <image src="{{item.ImageUrl}}"/>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<image wx:else src="{{shopDetail.ImageUrl}}" style="width:100%;" />
+<view class="p040">
+    <view class="clearfix mb20 mt30">
+        <view class="fl bold fs36 C0 w88">{{shopDetail.Title}}</view>
+        <view class="icon i-collect fr rel {{isCollect ? 'i-collected' : '' }}" bindtap="collectFunc" data-id="{{shopDetail.Id}}"></view>
+    </view>
+    <view class="clearfix mb20">
+        <view class="fl tag tagY fs22 mr10">{{shopDetail.ShopState}}</view>
+        <view class="fl tag tagG fs22 mr10">{{shopDetail.HouseType}}</view>
+        <view class="fl fs22 mr10 tag tagC " wx:for="{{shopDetail.Types}}" wx:for-index="index" wx:key="key">{{item}}</view>
+    </view>
+    <view class="fs26 C9">房源编号：{{shopDetail.ShopCode}}</view>
+    <view class="clearfix tc mt30 shopFir fs26 C6">
+        <view class="fl rel">
+            <view class="mb10 bold red fs30">{{shopDetail.MonthRent}}</view>
+            <view>月租金</view>
+        </view>
+        <view class="fl rel">
+            <view class="mb10 bold red fs30">{{shopDetail.DayRent}}元/m²</view>
+            <view>日租金</view>
+        </view>
+        <view class="fl">
+            <view class="mb10 bold red fs30">{{shopDetail.ConstructionArea}}m²</view>
+            <view>建筑面积</view>
+        </view>
+    </view>
+    <view class="clearfix shopSec fs24 C9 mt10 pb40">
+        <view class="fl clearfix">
+            <view class="fl mr10">转让费:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.OutRentFee}}">{{shopDetail.OutRentFee}}元</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">使用面积:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.UsingArea}}">{{shopDetail.UsingArea}}m²</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">行政区:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.District}}">{{shopDetail.District}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">得房率:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.RoomRate}}">{{shopDetail.RoomRate*100}}%</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">付款方式:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.Deposit && shopDetail.Pay}}">押{{shopDetail.Deposit}}付{{shopDetail.Pay}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">楼层:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.Floor}}">{{shopDetail.Floor}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">合同年限:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.ContractYears}}">{{shopDetail.ContractYears}}年</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">递增方式:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.YearIncrement && shopDetail.YearIncrementPercent}}">{{shopDetail.YearIncrement}}年{{shopDetail.YearIncrementPercent}}%</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">物业费:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.PropertyFee}}">{{shopDetail.PropertyFee}}元/月/m²</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">免租期:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.RentFree}}">{{shopDetail.RentFree}}天</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">起租日期:</view>
+            <view class="C0 fl ellips" wx:if="{{shopDetail.RentDate}}">{{shopDetail.RentDate}}</view>
+        </view>
+        <view class="fl clearfix">
+            <view class="fl mr10">是否包物业:</view>
+            <view class="C0 fl ellips">{{shopDetail.IsProperty?"是":"否"}}</view>
+        </view>
+        <view class="clearfix fl" style="width:100%;">
+            <view class="fl mr10">所属项目:</view>
+            <view class="clearfix fl" style="width:517rpx;" wx:if="{{ParentProName}}">
+                <view class="fl yellow" bindtap="goProDetailFunc" data-id="{{shopDetail.ParentProId}}">{{shopDetail.ParentProName}}</view>
+                <view class="fr icon i-right rel" style="top:5rpx;"></view>
+            </view>
+        </view>
+    </view>
+    <view class="bold fs36 C0 mt40">地图定位</view>
+</view>
+<map class="mt20" longitude="{{shopDetail.Lng}}" latitude="{{shopDetail.Lat}}" markers="{{markers}}" scale="16" bindtap="goMapDetail" enable-zoom="{{false}}" enable-scroll="{{false}}" style="width: 100%; height: 400rpx;">
+</map>
+
+<view class="p040">
+    <view wx:if="{{shopDetail.SpecialTags.length}}">
+        <view class="bold fs36 C0 mt40">特殊标签</view>
+        <view class="clearfix pb40 mt30 comBottom">
+            <view class="fl fs24 mr10 tag {{index%2==0?'tagG' : 'tagC'}}" wx:for="{{shopDetail.SpecialTags}}" wx:for-index="index" wx:key="key">{{item}}</view>
+        </view>
+    </view>
+    <view wx:if="{{shopDetail.ShopRrends}}">
+        <view class="bold fs36 C0 mt40">商铺动态</view>
+        <view class="clearfix pb40 mt30 shopRrends tc comBottom">
+            <view class="fl">
+                <view class="C9 fs28 mb10">近7日带看（次）</view>
+                <view class="fs36 red">{{shopDetail.ShopRrends.AboutSeven}}</view>
+            </view>
+            <view class="fr">
+                <view class="C9 fs28 mb10">近30日带看（次）</view>
+                <view class="fs36 red">{{shopDetail.ShopRrends.AboutMonth}}</view>
+            </view>
+        </view>
+        <view class="mt30 pb30 clearfix comBottom" style="line-height:50rpx;" bindtap="goRrendsFunc" data-id="{{shopDetail.Id}}">
+            <view class="fl bold fs36 C0 clearfix">
+                <view class="fl">带看记录(</view>
+                <view class="inlineB yellow fl">{{shopDetail.ShopRrends.LookRecordNum}}</view>
+                <view class="fl">)</view>
+            </view>
+            <view class="fr icon i-right rel" style="top:10rpx;"></view>
+            <view class="fr fs28 C6 mr20">
+                最近带看
+                <text class="ml10">{{shopDetail.ShopRrends.LookRecordDate}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="bold fs36 C0 mt40">描述</view>
+    <view class="pb40 mt30 fs28 C3">{{shopDetail.UnitDesc}}</view>
+    <!-- 预约 -->
+    <!-- <view class="bespeakWrap">
+        <view class="fs28 C3 tc rel">
+            <view class="rel">了解更多？蜜蜂找铺为您服务</view>
+            <view class="abs"></view>
+        </view>
+        <view class="Cf fs30 mt30 bold tc bgY comBtn comWidth" bindtap="bespeakFunc">预约看铺</view>
+    </view> -->
+    <view class="bold fs36 C0 mt40" wx:if="{{brokerLists.length}}">推荐经纪人</view>
+    <view class="comBottom pb30 mt30" wx:if="{{brokerLists.length}}">
+        <view class="brokerItem mb30" wx:for="{{brokerLists}}" wx:for-index="index" wx:key="key">
+            <image src="{{item.BrokerImg}}" class="fl mr30" />
+            <view class="fl">
+                <view class="fs28 C0 bold mb10 mt5">{{item.BrokerName}}</view>
+                <view class="fs24 C6">{{item.BrokerCompany}}</view>
+            </view>
+            <view class="fr brokerIcon mt10" data-tel="{{item.BrokerTel}}" bindtap="telFunc">
+                <view class="icon i-tel"></view>
+            </view>
+            <view class="fr brokerIcon mt10 mr30">
+                <view class="icon i-eva"></view>
+            </view>
+        </view>
+        <view class="tc fs24 C0">您联系经纪人时，请告知是在蜜蜂找铺平台上看到的，方便您和业务员更好的沟通，服务更有保障！</view>
+    </view>
+    <view class="bold fs36 C0 mt40" wx:if="{{similarShopLists.length}}">相似商铺</view>
+</view>
+<scroll-view scroll-x="true" scroll-with-animation="true" class="clearfix mt30 pb30 recommendLists" style="height:390rpx;" wx:if="{{similarShopLists.length}}">
+    <view class="recommendItem mr20 inlineB" wx:for="{{similarShopLists}}" wx:for-index="index" wx:key="key" data-id="{{item.ShopId}}">
+        <image class="" src="{{item.ShopImg}}" />
+        <view class="p20">
+            <view class="fs28 C0 bold">{{item.ShopName}}</view>
+            <view class="fs24 C6 mt5">建筑面积:<text class="C3">{{item.ShopBuiltUpArea}}</text></view>
+            <view class="fs24 C6 mt5">日租金:<text class="C3">{{item.ShopDayRent}}</text></view>
+            <view class="fs24 C6 mt5">月租金:<text class="fs30 red">{{item.ShopMonthRent}}</text></view>
+        </view>
+    </view>
+</scroll-view>

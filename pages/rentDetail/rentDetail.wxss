@@ -1,0 +1,13 @@
+.rentHeader{
+    margin:0 20rpx;
+}
+.rentHeader>image{
+    width:180rpx;
+    height:180rpx;
+    border-radius: 50%;
+    margin:60rpx auto 30rpx;
+}
+.i-collect{
+    top:20rpx;
+    right:10rpx;
+}

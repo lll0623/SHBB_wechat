@@ -1,0 +1,22 @@
+<view wx:if="{{!isShow}}">
+    <view class="rel tit tc mt30 mb40">
+        <view class="fs24 C6 rel bgF inlineB">推荐登录方式</view>
+        <view class="abs"></view>
+    </view>
+    <button class="Cf fs30 mt30 bold tc bgY comBtn comWidth" open-type="getPhoneNumber" lang="zh_CN" bindgetphonenumber="getPhoneNumber">
+        <view class="icon i-weChat mr10 rel inlineB"></view>
+        账号登录
+    </button>
+</view>
+<view class="telLogin comWidth mt40 fs30 C0" wx:if="{{isShow}}">
+    <view class="icon i-close" bindtap="closeFunc"></view>
+    <view class="mt30 fs38 C0 mb30">手机快捷登录</view>
+    <view class="loginIptItem clearfix mt40">
+        <input class="block comBottom fl" type="number" placeholder="请输入手机号" maxlength="11" bindinput="inputPhoneFunc" style="width:72%;" />
+        <button class="fr fs28 C9" disabled='{{disabled}}' plain="true" bindtap="getVerificationCode" style="width:28%;">{{time}}</button>
+    </view>
+    <view class="loginIptItem mb40">
+        <input class="block comBottom" type="number" maxlength="6" placeholder="请输入验证码" bindinput="inputCodeFunc" />
+    </view>
+    <view class="Cf fs30 mt30 bold tc bgY comBtn comWidth mt80" style="width:100%;" bindtap="loginFunc">登录</view>
+</view>

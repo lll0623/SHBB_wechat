@@ -1,0 +1,96 @@
+
+    <view class="tabNav clearfix tc fs28 C0 bold">
+        <view class="fl {{tab==1?'active':''}}" bindtap="tabFunc" data-tab="1">我要招租</view>
+        <view class="fl {{tab==2?'active':''}}" bindtap="tabFunc" data-tab="2">我要找铺</view>
+    </view>
+    <view wx:if="{{tab==1}}" class="pb30">
+        <view class="releaseBox fs28 C0">
+            <view class="comBottom clearfix item">
+                <view class="label fl">商业项目</view>
+                <input class="fl cont" type="text" placeholder="请输入商业项目" bindinput="iptRentProName" style="width:430rpx;" />
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">区域<text class="red">*</text></view>
+                <picker class="block fl" style="width:400rpx;height:100%;" bindchange="RegionChange" value="{{RegionIndex}}" range="{{RegionArr}}">
+                    <view style="height:90rpx;">{{RegionArr[RegionIndex]}}</view>
+                </picker>
+                <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">道路<text class="red">*</text></view>
+                <picker class="block fl" style="width:400rpx;height:100%;" bindchange="RoadChange" value="{{RoadIndex}}" range="{{RoadArr}}">
+                    <view style="height:90rpx;">{{RoadArr[RoadIndex]}}</view>
+                </picker>
+                <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">门牌号<text class="red">*</text></view>
+                <input class="fl cont" type="text" placeholder="请输入门牌号" bindinput="iptRentHourseNumber" style="width:430rpx;" />
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">面积<text class="red">*</text></view>
+                <input class="fl cont" type="number" bindinput="iptRentArea" placeholder="请输入面积"/>
+                <view class="fr">m²</view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">月租金<text class="red">*</text></view>
+                <input class="fl cont" type="number" bindinput="iptMonthRent" placeholder="请输入月租金"/>
+                <view class="fr">元</view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">转让费<text class="red">*</text></view>
+                <input class="fl cont" type="number" bindinput="iptTransferFee" placeholder="请输入转让费"/>
+                <view class="fr">万元</view>
+            </view>
+            <view class="clearfix item mb20" style="height:auto;">
+                <view class="label mt20" style="width:auto;height:60rpx;line-height:60rpx;">商铺照片(上传正面、左侧、右侧三张)<text class="red">*</text></view>
+                <view class="clearfix imgWrap" style="padding-top:20rpx;">
+                    <view class="rel fl imgItem" wx:for="{{Images}}" wx:for-index="index" wx:key="key">
+                        <image src="{{item}}"  bindtap="handleImagePreview" data-idx="{{index}}" />
+                        <view class="icon i-delete abs" bindtap="deleteImg" data-index="{{index}}"></view>
+                    </view>
+                    <view class="addImg tc fl" bindtap="addImg" wx:if="{{Images.length < 3}}"><view class="icon i-addImg inlineB"></view></view>
+                </view>
+            </view>
+        </view>
+        <view class="Cf fs30 mt30 bold tc bgY comBtn comWidth fix" style="bottom:100rpx;left:7%;" bindtap="addRentFunc">确认发布</view>
+    </view>
+    <view wx:if="{{tab==2}}" class="pb30">
+        <view class="releaseBox fs28 C0">
+            <view class="comBottom clearfix item">
+                <view class="label fl">品牌<text class="red">*</text></view>
+                <input class="fl cont" type="text" placeholder="请输入品牌" bindinput="iptBrand" style="width:430rpx;" />
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">经营类型<text class="red">*</text></view>
+                <picker class="block fl" style="width:400rpx;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                    <view style="height:90rpx;">{{array[index]}}</view>
+                </picker>
+                <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">业态<text class="red">*</text></view>
+                <picker class="block fl" style="width:400rpx;height:100%;" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                    <view style="height:90rpx;">
+                        {{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}
+                    </view>
+                </picker>
+                <view class="icon i-right rel fr" style="top:30rpx;right:-20rpx;"></view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">需求面积<text class="red">*</text></view>
+                <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptAreaMin"/>
+                <view class='fl mr20'>-</view>
+                <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptAreaMax"/>
+                <view class="fr">m²</view>
+            </view>
+            <view class="comBottom clearfix item">
+                <view class="label fl">日租金<text class="red">*</text></view>
+                <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptDayRentMin"/>
+                <view class='fl mr20'>-</view>
+                <input class="fl cont tc" type="number" placeholder="请输入" style="width:160rpx;" bindinput="iptDayRentMax"/>
+                <view class="fr">元</view>
+            </view>
+        </view>
+        <view class="Cf fs30 mt30 bold tc bgY comBtn comWidth fix" style="bottom:100rpx;left:7%;" bindtap="addUserDemand">确认发布</view>
+    </view>

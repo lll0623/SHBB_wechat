@@ -1,0 +1,31 @@
+page{
+    background: #f4f4f4;
+}
+.headerWrap{
+    padding:30rpx;
+}
+.headerWrap image{
+    width:140rpx;
+    height:140rpx;
+    border-radius:50%;
+}
+.userTel{
+    line-height:140rpx;
+    height:140rpx;
+}
+.i-set{
+    width:50rpx;
+    height:50rpx;
+    background-size:330rpx auto;
+    background-position:-268rpx -106rpx;
+}
+.lists{
+    padding:0 30rpx;
+}
+.lists>view{
+    height:90rpx;
+    line-height: 90rpx;
+}
+.lists .i-right{
+    top:30rpx;
+}

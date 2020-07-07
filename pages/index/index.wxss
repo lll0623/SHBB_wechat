@@ -1,0 +1,98 @@
+.banners{
+    height:420rpx;
+}
+.slideImage{
+    width:100%;
+    height:100%;
+}
+.indexSearch{
+    bottom:20rpx;
+    left:7%;
+    height:80rpx;
+    border-radius: 80rpx;
+    box-shadow: 0rpx 6rpx 20rpx #ddd;
+    z-index:1;
+}
+.indexSearch input{
+    padding-left:35rpx;
+    height:100%;
+    width:575rpx;
+    line-height: 80rpx;
+}
+
+.indexNav{
+    width:82%;
+}
+.indexNav>view{
+    width:100rpx;
+    margin-right:72rpx;
+}
+.indexNav>view:last-child{
+    margin-right:0;
+}
+.iconWrap{
+    width:100%;
+    height:100rpx;
+    border-radius: 41rpx;
+}
+.i-search{
+    top:26rpx;
+    left:30rpx;
+}
+.iconWrap .icon{
+    width:54rpx;
+    height:54rpx;
+    background-size:400rpx auto;
+    top:50%;
+    margin-top:-25rpx;
+}
+.i-shop{
+    background-position: -66rpx 3rpx
+}
+.i-pro{
+    background-position: -137rpx 3rpx
+}
+.i-cust{
+    background-position: -204rpx 3rpx
+}
+.i-release{
+    background-position: -270rpx 3rpx
+}
+
+.indexData{
+    padding:30rpx 0;
+    border:1rpx solid #eee;
+    border-left:0;
+    border-right:0;
+}
+.indexData>view{
+    width:50%;
+}
+.indexData>view:after{
+    content:"";
+    display: block;
+    width:1px;
+    height:80%;
+    position: absolute;
+    top:10%;
+    right:0;
+    background:#eee;
+}
+.iconWrap1{
+    width:80rpx;
+    height:80rpx;
+    border-radius: 50%;
+    margin:8rpx 20rpx 0 35rpx;
+}
+.iconWrap1 .icon{
+    width:45rpx;
+    height:45rpx;
+    background-size:340rpx auto;
+    top:18rpx;
+}
+.i-dataShop{
+    background-position: 2rpx -56rpx;
+}
+.i-dataCust{
+    background-position: -57rpx -56rpx;
+}

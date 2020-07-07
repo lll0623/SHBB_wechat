@@ -1,0 +1,94 @@
+<view class="rel" style="height:480rpx;">
+    <!--轮播图-->
+    <swiper class="banners" circular="true"  interval="5000" duration="1000" indicator-active-color="#ffffff">
+        <block wx:for="{{banners}}" wx:for-index="index" wx:key="key">
+            <swiper-item>
+                <!-- <navigator url="../index/index" class="block"> -->
+                    <image src="{{item.ImageUrl}}" class="slideImage"/>
+                <!-- </navigator> -->
+            </swiper-item>
+        </block>
+    </swiper>
+    <!-- indexSearch -->
+    <view class="indexSearch abs bgF fs28 C3 clearfix comWidth" bindtap="goSearchFunc" data-type="1">
+        <view class="icon i-search fl rel"></view>
+        <input class="fl" type="text" placeholder-class="C6" placeholder="您想要哪里的商铺？" disabled="disabled"/>
+    </view>
+</view>
+<!-- 导航菜单 -->
+<view class="indexNav clearfix C3 fs26 tc mt45 comWidth">
+    <view class="fl" bindtap="goShopListsFunc">
+        <view class="iconWrap mb15 tc" style="background:linear-gradient(to right, #f7cc87 8%,#f5c520 100%);">
+            <view class="inlineB rel icon i-shop"></view>
+        </view>
+        <view>商铺</view>
+    </view>
+    <view class="fl" bindtap="goProListsFunc">
+        <view class="iconWrap mb15 tc" style="background:linear-gradient(to right, #f9a49d 6%,#ee6e63 100%);">
+            <view class="inlineB rel icon i-pro"></view>
+        </view>
+        <view>项目</view>
+    </view>
+    <view class="fl" bindtap="goRentListsFunc">
+        <view class="iconWrap mb15 tc" style="background:linear-gradient(to right, #8eb1f5 6%,#4077f8 100%);">
+            <view class="inlineB rel icon i-cust"></view>
+        </view>
+        <view>求租</view>
+    </view>
+    <view class="fl" bindtap="goReleaseFunc">
+        <view class="iconWrap mb15 tc" style="background:linear-gradient(to right, #c189f3 6%,#9931e1 100%);">
+            <view class="inlineB rel icon i-release"></view>
+        </view>
+        <view>发布</view>
+    </view>
+</view>
+<view class="indexData clearfix mt60 tc comWidth">
+    <view class="fl rel">
+        <view class="iconWrap1 inlineB red fl" style="background:linear-gradient(to right, #f7cc87 2%,#f5c520 100%);">
+            <view class="inlineB rel icon i-dataShop"></view>
+        </view>
+        <view class="inlineB fl">
+            <view>
+                <view class="inlineB fs36 red bold">{{indexData.StoreNum}}</view>
+                <view class="fs26 C6 inlineB ml10 rel" style="top:-4rpx;">商铺</view>
+            </view>
+            <view class="fs28 C3">正在招租</view>
+        </view>
+    </view>
+    <view class="fr clearfix">
+        <view class="iconWrap1 inlineB red fl" style="background:linear-gradient(to right, #8eb1f5 2%,#4077f8 100%);">
+            <view class="inlineB rel icon i-dataCust"></view>
+        </view>
+        <view class="inlineB fl">
+            <view>
+                <view class="inlineB fs36 red bold">{{indexData.CustNum}}</view>
+                <view class="fs26 C6 inlineB ml10 rel" style="top:-4rpx;">客户</view>
+            </view>
+            <view class="fs28 C3">正在找铺</view>
+        </view>
+    </view>
+</view>
+<!-- 精选商铺 -->
+<view class="mt80 indexTit bold C0 fs38 comWidth">精选商铺</view>
+<view class="selectedShopLists comWidth mt20">
+    <view class="clearfix shopItem rel" wx:for="{{selectedShopLists}}" wx:for-index="index" wx:key="key" data-id="{{item.Id}}" bindtap="goShopDetail">
+        <image src="{{item.ImageUrl}}" class="fl mr30"/>
+        <view class="fl shopInfo">
+            <view class="fs28 C0 mb5 bold">{{item.Name}}</view>
+            <view class="fs22 C9 mb5">
+                <view class="inlineB mr10 rel" style="top:-3rpx;">{{item.District}}</view>
+                <view class="fs22 tag tagY inlineB">{{item.ShopState}}</view>
+            </view>
+            <view class="fs22 C9 mb5">
+                <view class="inlineB mr10">{{item.ConstructionArea}}m²</view>
+                <view class="inlineB mr10 rel" style="top:-1rpx;">|</view>
+                <view class="inlineB">{{item.DayRent}}元/m²</view>
+            </view>
+            <view class="clearfix fs22 mb5">
+                <view class="fl tag mr10 {{index%2==0?'tagG' : 'tagC'}} mt10" wx:for="{{item.Types}}" wx:for-index="index" wx:key="key">{{item}}</view>
+            </view>
+        </view>
+        <view class="red fs34 abs shopPrice bold">{{item.MonthRent}}元</view>
+    </view>
+</view>
+<view class="yellow fs30  bold tc comBtn bgY0 comWidth mb40" bindtap="goShopListsFunc">查看全部商铺</view>

@@ -1,0 +1,88 @@
+<view class="tabNav clearfix tc fs28 C0 bold fix bgF">
+    <view class="fl {{tab==1?'active':''}}" bindtap="tabFunc" data-tab="1">商铺</view>
+    <view class="fl {{tab==2?'active':''}}" bindtap="tabFunc" data-tab="2">项目</view>
+    <view class="fl {{tab==3?'active':''}}" bindtap="tabFunc" data-tab="3">客户</view>
+</view>
+<view style="padding-top:75rpx;">
+    <view class="p040" wx:if="{{tab==1}}">
+        <view class="shopItem listsItem rel {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{shopLists}}" data-index="{{index}}" wx:for-index="index" wx:key="key" data-id="{{item.Id}}" bindtap="goShopDetail" bindtouchstart="touchShopStart" bindtouchmove="touchShopMove">
+            <view class="clearfix content">
+                <image src="{{item.ImageUrl}}" class="fl mr30"/>
+                <view class="fl shopInfo">
+                    <view class="fs28 C0 mb5 bold">{{item.Name}}</view>
+                    <view class="fs22 C9 mb5">
+                        <view class="inlineB mr10 rel" style="top:-3rpx;">{{item.District}}</view>
+                        <view class="fs22 tag tagY inlineB">{{item.ShopState}}</view>
+                    </view>
+                    <view class="fs22 C9 mb5">
+                        <view class="inlineB mr10">{{item.ConstructionArea}}m²</view>
+                        <view class="inlineB mr10 rel" style="top:-1rpx;">|</view>
+                        <view class="inlineB">{{item.DayRent}}元/m²</view>
+                    </view>
+                    <view class="clearfix fs22 mb5">
+                        <view class="fl tag mr10 {{index%2==0?'tagG' : 'tagC'}} mt10" wx:for="{{item.Types}}" wx:for-index="index" wx:key="key">{{item}}</view>
+                    </view>
+                </view>
+                <view class="red fs34 abs shopPrice bold">{{item.MonthRent}}元</view>
+            </view>
+            <view class="del" catchtap="delShop" data-index="{{index}}" data-id="{{item.Id}}">
+                <view class="icon i-touchDel"></view>
+            </view>
+        </view>
+    </view>
+    <view class="p040" wx:if="{{tab==2}}">
+        <view class="clearfix shopItem listsItem rel {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{proLists}}"  data-index="{{index}}" wx:for-index="index" wx:key="key" data-id="{{item.Id}}" bindtap="goProDetail" bindtouchstart="touchProStart" bindtouchmove="touchProMove">
+            <view class="clearfix content">
+                <view class="rel fl mr30">
+                    <view class="abs tagS fs22 {{item.ProjectStatus == 1? 'tagSR' : item.ProjectStatus == 2 ? 'tagSG' : item.ProjectStatus == 3 ? 'tgSB' : item.ProjectStatus == 4 ? 'tgSGray' : ''}}" style="top:0;left:0;">{{item.ProjectStatus == 1? '自持' : item.ProjectStatus == 2 ? '代理招商' : item.ProjectStatus == 3 ? '合作' : item.ProjectStatus == 4 ? '未合作' : ''}}</view>
+                    <image src="{{item.ImageUrl}}"/>
+                </view>
+                <view class="fl shopInfo">
+                    <view class="fs28 C0 mb5 bold">{{item.Name}}<view class="fs22 tag  inlineB rel ml10 {{item.ProjectType == 1 ? 'tagG' : item.ProjectType == 2 ? 'tagGray' : item.ProjectType == 3 ? 'tagY': ''}}" style="top:10rpx;">{{item.ProjectType == 1 ? '招商中' : item.ProjectType == 2 ? '准备中' : item.ProjectType == 3 ? '未招商': ''}}</view></view>
+                    <view class="fs22 C9 mb5">
+                        <view class="inlineB mr10 rel">{{item.Address}}</view>
+                    </view>
+                    <view class="fs22 C9 mb5">
+                        <view class="inlineB mr10">{{item.ConstructArea}}m²</view>
+                    </view>
+                    <view class="clearfix fs22 mb5">
+                        <view class="fl tag mr10 {{index%2==0?'tagG' : 'tagC'}} mt10" wx:for="{{item.Types}}" wx:for-index="index" wx:key="key">{{item.Name}}</view>
+                    </view>
+                </view>
+                <view class="red fs34 abs shopPrice bold">{{item.DailyRentMin}}-{{item.DailyRentMax}}元/m²</view>
+            </view>
+            <view class="del" catchtap="delPro" data-index="{{index}}" data-id="{{item.Id}}">
+                <view class="icon i-touchDel"></view>
+            </view>
+        </view>
+    </view>
+    <view class="p040" wx:if="{{tab==3}}">
+        <view class="clearfix shopItem rel listsItem {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{rentLists}}" data-index="{{index}}"  wx:for-index="index" wx:key="key" data-id="{{item.CustId}}" bindtap="goRentDetail" bindtouchstart="touchCustStart" bindtouchmove="touchCustMove">
+            <view class="clearfix content">
+                <image src="{{item.Image}}" class="fl mr30" style="border-radius:50%;width:170rpx;"/>
+                <view class="fl shopInfo" style="width:450rpx;">
+                    <view class="fs28 C0 mb5 bold">
+                        {{item.CustName}}
+                        <view class="fs22 tag tagY inlineB rel ml10" style="top:10rpx;">{{item.Brand}}</view>
+                    </view>
+                    <view class="clearfix fs22 mb5">
+                        <view class="fl tag mr10 tagG mt10" wx:for="{{item.ReqAreas}}" wx:for-index="index" wx:key="key">{{item}}</view>
+                    </view>
+
+                    <view class="fs22 C9">
+                        <view class="inlineB mr10 rel">{{item.AreaMin}}-{{item.AreaMax}}m²</view>
+                    </view>
+                    <view class="fs22 C9 mb5">
+                        <view class="inlineB mr10 tag tagC">{{item.FormatCategory}}</view>
+                        <view class="inlineB mr10 rel" style="top:-3rpx;">-</view>
+                        <view class="inlineB mr10 tag tagC">{{item.Format}}</view>
+                    </view>
+                </view>
+                <view class="red fs34 abs shopPrice bold">{{item.PriceMin}}-{{item.PriceMax}}元/m²</view>
+            </view>
+            <view class="del" catchtap="delCust" data-index="{{index}}" data-id="{{item.CustId}}">
+                <view class="icon i-touchDel"></view>
+            </view>
+        </view>
+    </view>
+</view>

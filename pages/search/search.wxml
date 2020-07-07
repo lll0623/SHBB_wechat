@@ -1,0 +1,24 @@
+<view class="clearfix searchWrap">
+    <view class="fs28 C3 clearfix bgF4 listsSearch fl" style="width:80%;">
+        <view class="icon i-search fl rel" style="top:21rpx;"></view>
+        <input class="fl" type="text" placeholder-class="C6" placeholder="{{placeholder}}" bindinput="bindKeyInput" />
+    </view>
+    <view class="fs28 C0 fr tc searchBtn" bindtap="searchFunc">搜索</view>
+</view>
+<view class="searchNav clearfix fs30 C0 tc comBottom">
+    <view class="fl {{type == 1 ? 'active':''}}" data-type="1" bindtap="tabFunc">商铺</view>
+    <view class="fl {{type == 2 ? 'active':''}}" data-type="2" bindtap="tabFunc">项目</view>
+    <view class="fl {{type == 3 ? 'active':''}}" data-type="3" bindtap="tabFunc">求租</view>
+</view>
+<view class="searchHistroy clearfix p040">
+    <view class="clearfix comBottom">
+        <view class="fs26 C6 fl">历史搜索</view>
+        <view class="icon i-delHistroy fr rel" bindtap="delHistroy"></view>
+    </view>
+    <view class="clearfix comBottom" wx:for="{{searchHistroyLists}}" bindtap="goLists" wx:for-index="index" wx:key="key" data-searchkey="{{item.searchKey}}" data-type="{{item.type}}">
+        <view class="fl">{{item.searchKey}}</view>
+        <view style="height:30rpx;line-height:30rpx;margin-top:28rpx;" class="fr tag fs24 {{item.type == 1 ? 'tagY' : item.type == 2 ? 'tagG' : item.type == 3 ? 'tagB' : ''}}">
+            {{item.type == 1 ? '商铺' : item.type == 2 ? '项目' : item.type == 3 ? '求租' : ''}}
+        </view>
+    </view>
+</view>
